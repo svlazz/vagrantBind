@@ -13,5 +13,6 @@ ns1 IN CNAME tierra.sistema.sol.
 venus.sistema.sol. IN  A 192.168.57.102
 ns2 IN CNAME venus.sistema.sol.
 marte.sistema.sol. IN A 192.168.57.104
+mercurio.sistema.sol. IN A 192.168.57.101
 mail IN CNAME marte.sistema.sol.
 @    IN MX 10 marte.sistema.sol.
