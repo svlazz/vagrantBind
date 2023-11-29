@@ -1,9 +1,27 @@
 #!/bin/bash
+
+export DEBIAN_FRONTEND=noninteractive
+
 apt-get -y update
-DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+apt-get -y upgrade
+    
 
-apt-get -y install bind9
+    apt-get install bind9 bind9utils bind9-doc -y
+    cp /vagrant/archivos/named /etc/default/
 
-cp -v /vagrant/named.conf.options /etc/bind
+    cp /vagrant/archivos/resolv.conf /etc/
 
-systemctl restart bind9
+    if [ $(cat /etc/hostname) == 'tierra' ]; then
+        cp /vagrant/archivos/tierra/named.conf.options /etc/bind/
+        cp /vagrant/archivos/tierra/named.conf.local /etc/bind/
+        cp /vagrant/archivos/tierra/sistema.sol.dns /vagrant/archivos/tierra/sistema.sol.rev /var/lib/bind/
+    else 
+     
+        cp /vagrant/archivos/venus/named.conf.options /etc/bind/
+        cp /vagrant/archivos/venus/named.conf.local /etc/bind/
+    fi
+
+    systemctl restart named   
+
+
+unset DEBIAN_FRONTEND

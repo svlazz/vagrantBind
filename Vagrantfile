@@ -11,10 +11,17 @@ Vagrant.configure("2") do |config|
   end # provider
 
   #Solo para una máquina virtual
-  config.vm.define "debian" do |debian|
-    debian.vm.hostname = "debian.deaw.es"
+  config.vm.define "tierra" do |debian|
+    debian.vm.hostname = "tierra"
     debian.vm.network :public_network
+    debian.vm.network :private_network, ip:"192.168.57.103"
     debian.vm.provision "shell", path: "provision.sh"
 
+  end
+  config.vm.define "venus" do |debian|
+    debian.vm.hostname = "venus"
+    debian.vm.network :public_network
+    debian.vm.provision "shell", path: "provision.sh"
+    debian.vm.network :private_network, ip:"192.168.57.102"
   end
 end

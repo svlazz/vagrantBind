@@ -1,3 +1,8 @@
+acl permitidos {
+	192.168.57.0/24;
+	localhost;
+	localnets;
+};
 options {
 	directory "/var/cache/bind";
 
@@ -10,15 +15,16 @@ options {
 	// Uncomment the following block, and insert the addresses replacing 
 	// the all-0's placeholder.
 
-	// forwarders {
-	// 	0.0.0.0;
-	// };
+	forwarders {
+		208.67.222.222;
+	};
 
 	//========================================================================
 	// If BIND logs error messages about the root key being expired,
 	// you will need to update your keys.  See https://www.isc.org/bind-keys
 	//========================================================================
-	dnssec-validation auto;
-
-	listen-on-v6 { any; };
+	dnssec-validation yes;
+	listen-on port 53 { 192.168.57.102; };
+	//listen-on-v6 { any; };
+	allow-recursion { permitidos; };
 };
