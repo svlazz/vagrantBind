@@ -14,7 +14,7 @@ apt-get -y upgrade
     if [ $(cat /etc/hostname) == 'tierra' ]; then
         cp /vagrant/archivos/tierra/named.conf.options /etc/bind/
         cp /vagrant/archivos/tierra/named.conf.local /etc/bind/
-        cp /vagrant/archivos/tierra/sistema.sol.dns /vagrant/archivos/tierra/sistema.sol.rev /var/lib/bind/
+        cp /vagrant/archivos/tierra/sistema.sol.dns /vagrant/archivos/tierra/sistema.sol.rev.rev /var/lib/bind/
     else 
      
         cp /vagrant/archivos/venus/named.conf.options /etc/bind/
